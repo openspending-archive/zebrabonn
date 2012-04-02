@@ -53,7 +53,10 @@
           var state = {
             year: 2014,
             drilldown: "produktbereich",
-            drilldowns: ["produktbereich"]
+            drilldowns: ["produktbereich"],
+            cuts: {
+              art: "Aufwand"
+            }
           };
           this.render(state, function(name) {
             app.navigate("produktbereich/" + name, {trigger: true});
@@ -67,7 +70,8 @@
             drilldown: "produkt",
             drilldowns: ["produkt"],
             cuts: {
-              produktbereich: name
+              produktbereich: name,
+              art: "Aufwand"
             }
           };
           this.render(state, function(pname) {
