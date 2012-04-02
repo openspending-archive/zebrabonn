@@ -83,7 +83,7 @@
           var treemap_dfd = new OpenSpending.Treemap($('#vis_widget'), treemap_ctx, state);
           var table_dfd = new OpenSpending.AggregateTable($('#table_widget'), context, state);
           $.when(treemap_dfd.promise(), table_dfd.promise()).then(function(w) {
-            $('#table_widget').on('click', 'a', function(e) {
+            $('#table_widget').on('click', 'td a', function(e) {
               callback($(e.target).data('name'));
               return false;
             });
