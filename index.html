@@ -53,19 +53,19 @@
     }
   </style>
 
-  <script type="text/javascript" src="http://assets.openspending.org/clients/zebralog-bonn/openspendingjs/lib/vendor/jquery.js"></script>
-  <script type="text/javascript" src="http://assets.openspending.org/clients/zebralog-bonn/openspendingjs/lib/vendor/yepnope.min.js"></script>
-  <script type="text/javascript" src="http://assets.openspending.org/clients/zebralog-bonn/openspendingjs/lib/vendor/underscore.js"></script>
-  <script type="text/javascript" src="http://assets.openspending.org/clients/zebralog-bonn/openspendingjs/lib/vendor/backbone.js"></script>
-  <script type="text/javascript" src="http://assets.openspending.org/clients/zebralog-bonn/openspendingjs/lib/vendor/bootstrap.js"></script>
-  <script type="text/javascript" src="http://assets.openspending.org/clients/zebralog-bonn/openspendingjs/lib/boot.js"></script>
-  <script defer="defer">OpenSpending.scriptRoot = "http://assets.openspending.org/clients/zebralog-bonn/openspendingjs";</script>
-  <script type="text/javascript" src="http://assets.openspending.org/clients/zebralog-bonn/openspendingjs/lib/utils/utils.js"></script>
-  <script type="text/javascript" src="http://assets.openspending.org/clients/zebralog-bonn/openspendingjs/lib/widgets.js"></script>
-  <script type="text/javascript" src="http://assets.openspending.org/clients/zebralog-bonn/openspendingjs/widgets/treemap/main.js"></script>
-  <script type="text/javascript" src="http://assets.openspending.org/clients/zebralog-bonn/openspendingjs/lib/vendor/jquery.format-1.2.min.js"></script>
+  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/vendor/jquery.js"></script>
+  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/vendor/yepnope.min.js"></script>
+  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/vendor/underscore.js"></script>
+  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/vendor/backbone.js"></script>
+  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/vendor/bootstrap.js"></script>
+  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/boot.js"></script>
+  <script defer="defer">OpenSpending.scriptRoot = "http://openspending.org/static/openspendingjs";</script>
+  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/utils/utils.js"></script>
+  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/widgets.js"></script>
+  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/widgets/treemap/main.js"></script>
+  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/vendor/jquery.format-1.2.min.js"></script>
   <script type="text/javascript"
-    src="http://assets.openspending.org/clients/zebralog-bonn/openspendingjs/widgets/aggregate_table/main.js"></script>
+    src="http://openspending.org/static/openspendingjs/widgets/aggregate_table/main.js"></script>
   <script defer="defer">
     $(function() {
       var context = {
@@ -118,7 +118,7 @@
           };
           this.render(state, function(pname) {
             var name_parts = pname.split("-");
-            document.location.href = 'http://assets.openspending.org/clients/zebralog-bonn/details/' +
+            document.location.href = 'http://openspending.org/static/details/' +
               name_parts[0] + '.pdf';
           })
         },
