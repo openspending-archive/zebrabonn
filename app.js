@@ -61,8 +61,6 @@ $(function() {
         click: function(node) { callback(node.data.name); }
       });
 
-      console.log(state);
-
       $('.openspending-link-filter').each(function(i, el) {
         el = $(el);
         var art = state.cuts.art;
@@ -100,4 +98,6 @@ $(function() {
       });
     }
   });
+
+  OpenSpending.app = new OpenSpending.WidgetLink;
 });
