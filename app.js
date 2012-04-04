@@ -20,7 +20,7 @@ $(function() {
     },
 
     home: function() {
-      app.navigate('pg/2014/Aufwand', {trigger: true});
+      OpenSpending.app.navigate('pg/2014/Aufwand', {trigger: true});
     },
     
     produktgruppe: function(year, art) {
@@ -34,7 +34,7 @@ $(function() {
         }
       };
       this.render(state, function(name) {
-        app.navigate("pb/" + name + '/' + year + '/' + art, {trigger: true});
+        OpenSpending.app.navigate("pb/" + name + '/' + year + '/' + art, {trigger: true});
       });
     },
 
