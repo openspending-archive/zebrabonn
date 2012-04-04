@@ -11,6 +11,8 @@
   <meta name="viewport" content="width=device-width">
 
   <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="http://clients.openspending.org/zebralog/bonn/style.css">
+  
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
   
 </head>
@@ -18,7 +20,6 @@
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
   <div class="container">
-    <h2 class='page-header'>Haushalt Bonn</h2>
 
     <a class='openspending-link-filter btn' data-year='2013' href='#'>2013</a>
     <a class='openspending-link-filter btn' data-year='2014' href='#'>2014</a>
@@ -33,142 +34,28 @@
   </div>
 
   <style>
-    .openspending-link-filter {
-
-    }
-
-
-    .openspending-link-filter.disable {
-      color: #ddd;
-      text-decoration: none;
-    }
-
-    .openspending#table_widget {
-      margin-top: 1em;
-    }
-
-    .openspending#table_widget .dataTables_info,
-    .openspending#table_widget .dataTables_paginate {
-      display: none;
-    }
+    
   </style>
 
-  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/vendor/jquery.js"></script>
-  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/vendor/yepnope.min.js"></script>
-  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/vendor/underscore.js"></script>
-  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/vendor/backbone.js"></script>
-  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/vendor/bootstrap.js"></script>
-  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/boot.js"></script>
-  <script defer="defer">OpenSpending.scriptRoot = "http://openspending.org/static/openspendingjs";</script>
-  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/utils/utils.js"></script>
-  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/widgets.js"></script>
-  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/widgets/treemap/main.js"></script>
-  <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/vendor/jquery.format-1.2.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/yepnope/1.0.1/yepnope.min.js"></script>
+
+
+  <script type="text/javascript" src="http://clients.openspending.org/zebralog/bonn/openspendingjs/lib/vendor/underscore.js"></script>
+  <script type="text/javascript" src="http://clients.openspending.org/zebralog/bonn/openspendingjs/lib/vendor/backbone.js"></script>
+  <script type="text/javascript" src="http://clients.openspending.org/zebralog/bonn/openspendingjs/lib/vendor/bootstrap.js"></script>
+  <script type="text/javascript" src="http://clients.openspending.org/zebralog/bonn/openspendingjs/lib/boot.js"></script>
+  <script type="text/javascript" src="http://clients.openspending.org/zebralog/bonn/openspendingjs/lib/utils/utils.js"></script>
+  <script type="text/javascript" src="http://clients.openspending.org/zebralog/bonn/openspendingjs/lib/widgets.js"></script>
+  <script type="text/javascript" src="http://clients.openspending.org/zebralog/bonn/openspendingjs/widgets/treemap/main.js"></script>
+  <script type="text/javascript" src="http://clients.openspending.org/zebralog/bonn/openspendingjs/lib/vendor/jquery.format-1.2.min.js"></script>
   <script type="text/javascript"
-    src="http://openspending.org/static/openspendingjs/widgets/aggregate_table/main.js"></script>
+    src="http://clients.openspending.org/zebralog/bonn/openspendingjs/widgets/aggregate_table/main.js"></script>
+  <script type="text/javascript"
+    src="app.js"></script>
   <script defer="defer">
     $(function() {
-      var context = {
-        dataset: "de-nrw-bonn",
-        siteUrl: "http://openspending.org",
-        pagesize: 50,
-        createLabel: function(widget, domElement, node) {
-            if ((node.data.value/widget.total)>0.03) {
-              domElement.innerHTML = "<div class='desc'><h2>" + $.format.number(node.data.value, '#,##0.') + "&euro;</h2>" + node.name + "</div>";
-            }
-          }
-        };
-
-      var WidgetLink = Backbone.Router.extend({
-        routes: {
-            "": "home",
-            "pg/:year/:art": "produktgruppe",
-            "pb/:name/:year/:art": "produktbereich"
-        },
-
-        home: function() {
-          app.navigate('pg/2014/Aufwand', {trigger: true});
-        },
-        
-        produktgruppe: function(year, art) {
-          var state = {
-            year: year,
-            prefix: 'pg',
-            drilldown: "produktbereich",
-            drilldowns: ["produktbereich"],
-            cuts: {
-              art: art
-            }
-          };
-          this.render(state, function(name) {
-            app.navigate("pb/" + name + '/' + year + '/' + art, {trigger: true});
-          })
-        },
-
-        produktbereich: function(name, year, art) {
-          var state = {
-            year: year,
-            prefix: 'pb/' + name,
-            drilldown: "produktgruppe",
-            drilldowns: ["produktgruppe"],
-            cuts: {
-              produktbereich: name,
-              art: art
-            }
-          };
-          this.render(state, function(pname) {
-            var name_parts = pname.split("-");
-            document.location.href = 'http://openspending.org/static/details/' +
-              name_parts[0] + '.pdf';
-          })
-        },
-
-        render: function(state, callback) {
-          var treemap_ctx = _.extend(context, {
-            click: function(node) { callback(node.data.name); }
-          });
-
-          console.log(state);
-
-          $('.openspending-link-filter').each(function(i, el) {
-            el = $(el);
-            var art = state.cuts.art;
-            var year = state.year;
-            if (el.data('year')) {
-              if (el.data('year')==year) {
-                el.addClass('disable');
-              } else {
-                year = el.data('year');
-                el.removeClass('disable');
-              }
-            }
-            if (el.data('art')) {
-              if (el.data('art')==art) {
-                el.addClass('disable');
-              } else {
-                art = el.data('art');
-                el.removeClass('disable');
-              }
-            }
-
-            el.prop('href', '#' + state.prefix + '/' + year + '/' + art);
-          });
-
-          var treemap_dfd = new OpenSpending.Treemap($('.openspending#vis_widget'), treemap_ctx, state);
-          var table_dfd = new OpenSpending.AggregateTable($('.openspending#table_widget'), context, state);
-          $.when(treemap_dfd.promise(), table_dfd.promise()).then(function(w) {
-            $('.openspending#table_widget').unbind('click', 'td a');
-            $('.openspending#table_widget').on('click', 'td a', function(e) {
-              var name = $(e.target).data('name') + '';
-              if (name.length<2) name = '0' + name;
-              callback(name);
-              return false;
-            });
-          });
-        }
-      });
-
-      var app = new WidgetLink;
+      var app = new OpenSpending.WidgetLink;
       Backbone.history.start();
     });
   </script>
